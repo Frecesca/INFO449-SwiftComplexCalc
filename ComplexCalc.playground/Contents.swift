@@ -28,10 +28,127 @@ print("Welcome back to the UW Calculator")
 //: IMPORTANT: If any tests are commented out, you will be graded a zero (0)! You should never be in the habit of eliminating tests to make the code pass.
 //:
 class Calculator {
+    
+    // Int + Int
+    func add(lhs: Int, rhs: Int) -> Int {
+        return lhs + rhs
+    }
+
+    func subtract(lhs: Int, rhs: Int) -> Int {
+        return lhs - rhs
+    }
+
+    func multiply(lhs: Int, rhs: Int) -> Int {
+        return lhs * rhs
+    }
+
+    func divide(lhs: Int, rhs: Int) -> Int {
+        if rhs == 0 {
+            return 0
+        }
+        return lhs / rhs
+    }
+
+    // higher-order function (two Ints)
+    func mathOp(lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
+        return op(lhs, rhs)
+    }
+
+    // add array
+    func add(_ args: [Int]) -> Int {
+        if args.isEmpty {
+            return 0
+        }
+
+        var sum = 0
+        for n in args {
+            sum += n
+        }
+        return sum
+    }
+
+    // multiply array
+    func multiply(_ args: [Int]) -> Int {
+        if args.isEmpty {
+            return 0
+        }
+
+        var result = 1
+        for n in args {
+            result *= n
+        }
+        return result
+    }
+
+    func count(_ args: [Int]) -> Int {
+        if args.isEmpty {
+            return 0
+        }
+        return args.count
+    }
+
+    func avg(_ args: [Int]) -> Int {
+        if args.isEmpty {
+            return 0
+        }
+
+        var sum = 0
+        for n in args {
+            sum += n
+        }
+        return sum / args.count
+    }
+
+    // higher-order function (array fold)
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
+        // allow empty array
+        var result = beg
+
+        for n in args {
+            result = op(result, n)
+        }
+
+        return result
+    }
+
+    // tuple points
+    func add(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        let x = lhs.0 + rhs.0
+        let y = lhs.1 + rhs.1
+        return (x, y)
+    }
+
+    func subtract(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        let x = lhs.0 - rhs.0
+        let y = lhs.1 - rhs.1
+        return (x, y)
+    }
+
+    // dictionary points: ["x": Int, "y": Int]
+    func add(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        let lx = lhs["x"] ?? 0
+        let ly = lhs["y"] ?? 0
+        let rx = rhs["x"] ?? 0
+        let ry = rhs["y"] ?? 0
+
+        return ["x": lx + rx, "y": ly + ry]
+    }
+
+    func subtract(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        let lx = lhs["x"] ?? 0
+        let ly = lhs["y"] ?? 0
+        let rx = rhs["x"] ?? 0
+        let ry = rhs["y"] ?? 0
+
+        return ["x": lx - rx, "y": ly - ry]
+    }
+
 }
 
 //: Don't change the name of this object (`calc`); it's used in all the tests.
 let calc = Calculator()
+
+
 
 //: ## Extra credit
 //: Add in your own tests here; they should not test something that is already covered by an existing test, but rest assured that I have not tested every boundary condition. Feel free to explore a variety of ideas, and do not be surprised if you come up with a possibility that isn't covered in my requirements! (I have been known to give extra credit if you find one!)
