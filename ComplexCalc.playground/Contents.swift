@@ -161,6 +161,33 @@ let calc = Calculator()
 
 // ===== Your tests go here
 
+// The spec does not say what avg([]) should return.
+// I choose to return 0 for empty input.
+calc.avg([]) == 0
+
+// The spec does not say what add([]) should return.
+// I choose to return 0 for empty input.
+calc.add([]) == 0
+
+// The spec does not say what multiply([]) should return.
+// I choose to return 0 for empty input.
+calc.multiply([]) == 0
+
+// count should work even if numbers are negative
+calc.count([-1, -2, -3]) == 3
+
+// Test add with negative numbers
+calc.add(lhs: -2, rhs: -3) == -5
+
+// avg should handle negative numbers
+calc.avg([-2, 2]) == 0
+
+// Test multiply with a negative number
+calc.multiply(lhs: -2, rhs: 3) == -6
+
+// If args is empty, the spec does not say what mathOp should do.
+// I choose to return beg.
+calc.mathOp(args: [], beg: 10, op: { $0 + $1 }) == 10
 //: ---
 //: ## Test code block
 //: Do not modify the code in this section
